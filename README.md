@@ -11,6 +11,13 @@
 gmail_username: 'user@gmail.com'
 gmail_password: 'password' 
 ```
+* Add twilio secrets to confif/secrets.yml
+```yaml
+twilio_account_sid:  <%= ENV.fetch("TWILIO_ACCOUNT_SID", "YOUR-TWILIO-SID-GOES-HERE") %>
+twilio_auth_token:  <%= ENV.fetch("TWILIO_AUTH_TOKEN", "YOUR-TWILIO-AUTH-TOKEN-GOES-HERE") %>
+twilio_phone_number:  <%= ENV.fetch("TWILIO_PHONE_NUMBER", "YOUR-TWILIO-TRIAL-PHONE-NUMBER-GOES-HERE") %>
+
+```
 * ```rails c```
 
 ## Creating user and message
@@ -36,4 +43,9 @@ NotifierMailer.information_message(User.first).deliver_later
 ### Using Active Job
 ```ruby
 SendEmailJob.set(wait: 20.seconds).perform_later(User.first, Message.first)
+```
+
+## Send SMS to user
+```ruby
+NotifierSms.call(User.first, Message.first)
 ```
