@@ -1,4 +1,7 @@
-# README
+### README
+
+# Email/SMS Notifier
+Sends messages to user using templates and custom messages
 
 ## Deployment instructions
 * Create config/database.yml
